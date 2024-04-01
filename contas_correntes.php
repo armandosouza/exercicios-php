@@ -22,17 +22,21 @@
         echo $contasCorrentes[$i]['titular'] . PHP_EOL;
     }
     */
-
-    // exibir informações
-    foreach ($contasCorrentes as $k => $conta) {
-        exibeMensagem("$conta[titular] - R$$conta[saldo]");
-    }
     
     $contasCorrentes[] = [
         'titular' => 'Claudio',
         'saldo' => 890
     ];
+
+    unset($contasCorrentes[2]);
+
+    // exibir informações
+    foreach ($contasCorrentes as $k => $conta) {
+        // exibeMensagem("$conta[titular] - R$$conta[saldo]");
+        list('titular' => $titular, 'saldo' => $saldo) = $conta;
+        exibeMensagem("$titular - R$$saldo");
+    }
     
-    $contasCorrentes[1] = sacar($contasCorrentes[1], 200);
+    sacar($contasCorrentes[1], 200);
     $contasCorrentes[1] = depositar($contasCorrentes[1],700);
     print_r($contasCorrentes);
